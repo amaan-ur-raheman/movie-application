@@ -1,14 +1,14 @@
-import PropTypes from "prop-types";
+import React from "react";
 
-const MovieCard = ({ movie }) => {
-    const {
+const MovieCard = ({
+    movie: {
         title,
         vote_average,
         poster_path,
         release_date,
         original_language,
-    } = movie;
-
+    },
+}) => {
     return (
         <div className="movie-card">
             <img
@@ -19,18 +19,22 @@ const MovieCard = ({ movie }) => {
                 }
                 alt={title}
             />
+
             <div className="mt-4">
                 <h3>{title}</h3>
 
                 <div className="content">
                     <div className="rating">
-                        <img src="star.svg" alt="Star Icon" />
+                        <img src="star.svg" alt="" />
                         <p>{vote_average ? vote_average.toFixed(1) : "N/A"}</p>
                     </div>
 
                     <span>•</span>
+
                     <p className="lang">{original_language}</p>
+
                     <span>•</span>
+
                     <p className="year">
                         {release_date ? release_date.split("-")[0] : "N/A"}
                     </p>
@@ -38,16 +42,6 @@ const MovieCard = ({ movie }) => {
             </div>
         </div>
     );
-};
-
-MovieCard.propTypes = {
-    movie: PropTypes.shape({
-        title: PropTypes.string,
-        vote_average: PropTypes.number,
-        poster_path: PropTypes.string,
-        release_date: PropTypes.string,
-        original_language: PropTypes.string,
-    }).isRequired,
 };
 
 export default MovieCard;
